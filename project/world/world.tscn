@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpexjv1puyyhu"]
+
+[ext_resource type="PackedScene" uid="uid://dw4rjw0b2g65g" path="res://world/wall/wall.tscn" id="1_3v22x"]
+[ext_resource type="Script" path="res://world/world.gd" id="1_n5cpv"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_n5cpv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(1, 0.835294, 0.909804, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 420.0
+offset_top = 80.0
+offset_right = 1500.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="WallContainer" type="Node" parent="."]
+
+[node name="WallLeft" parent="WallContainer" instance=ExtResource("1_3v22x")]
+position = Vector2(380, 0)
+
+[node name="WallRight" parent="WallContainer" instance=ExtResource("1_3v22x")]
+position = Vector2(1500, 0)
+
+[node name="Floor" parent="WallContainer" instance=ExtResource("1_3v22x")]
+position = Vector2(1500, 1080)
+rotation = 1.5708
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
