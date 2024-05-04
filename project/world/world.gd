@@ -6,7 +6,9 @@ enum is_dropped {
 	FALSE,
 }
 
+var collision
 var _ball : Ball
+
 var _ball_state: int: 
 	set(state):
 		if state == is_dropped.TRUE:
@@ -35,6 +37,8 @@ func _make_new_ball():
 	add_child(_ball)
 	_ball.global_position.x = _get_spawn_location()
 	_ball_state = is_dropped.FALSE
+	collision = _ball.get_node("Collision")
+	print(collision)
 
 
 func _drop():

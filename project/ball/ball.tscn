@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbye728peikrm"]
+[gd_scene load_steps=5 format=3 uid="uid://bbye728peikrm"]
 
 [ext_resource type="Script" path="res://ball/ball.gd" id="1_kxcw0"]
 [ext_resource type="Texture2D" uid="uid://h6g8ayjqvp1d" path="res://ball/pink_ball.png" id="1_uvfap"]
+[ext_resource type="Texture2D" uid="uid://6la41o5mxw47" path="res://ball/red_ball.png" id="3_d5gp2"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_51xi5"]
-radius = 24.0208
+[sub_resource type="CircleShape2D" id="CircleShape2D_la6ic"]
+resource_local_to_scene = true
+radius = 24.0
 
 [node name="Ball" type="RigidBody2D"]
 script = ExtResource("1_kxcw0")
@@ -12,5 +14,10 @@ script = ExtResource("1_kxcw0")
 [node name="PinkBall" type="Sprite2D" parent="."]
 texture = ExtResource("1_uvfap")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_51xi5")
+[node name="RedBall" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_d5gp2")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_la6ic")
+debug_color = Color(0, 0, 0, 0.419608)
