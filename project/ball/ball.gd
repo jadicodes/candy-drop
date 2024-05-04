@@ -30,13 +30,13 @@ var _ball_color: int:
 
 
 func _ready() -> void:
-	var number = randi_range(1,3)
+	var number = randi_range(1,2)
 	if number == 1:
 		_ball_color = colors.PINK
 	if number == 2:
 		_ball_color = colors.RED
-	if number == 3:
-		_ball_color = colors.ORANGE
+	#if number == 3:
+		#_ball_color = colors.ORANGE
 
 
 func _set_sprite_texture(path):
@@ -68,8 +68,7 @@ func _on_collision_detector_body_exited(body) -> void:
 
 
 func search() -> void:
-	for i in range(_ball_array.size() - 1):
-		for j in range(i + 1, _ball_array.size()):
-			if _ball_array[i].return_color() == _ball_array[j].return_color():
+	for i in _ball_array.size():
+			if _ball_array[i] != _ball_array[0] and _ball_array[i].return_color() == _ball_array[0].return_color():
 				_ball_array[i].queue_free()
-				_ball_array[j].queue_free()
+				_ball_array[0].queue_free()
