@@ -33,10 +33,11 @@ func _make_new_ball() -> void:
 	_ball_state = is_dropped.FALSE
 	collision = _ball.get_node("Collision")
 	_ball.global_position.x = _get_spawn_location()
+	_ball.global_position.y = 100
 
 
 func _get_spawn_location() -> float:
-	var _ball_location = clamp(get_global_mouse_position().x, 421 + collision.shape.radius, 1499 - collision.shape.radius)
+	var _ball_location = clamp(get_global_mouse_position().x, 426 + collision.shape.radius, 1494 - collision.shape.radius)
 	return _ball_location
 
 

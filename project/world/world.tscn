@@ -27,13 +27,13 @@ grow_vertical = 0
 [node name="WallContainer" type="Node" parent="."]
 
 [node name="WallLeft" parent="WallContainer" instance=ExtResource("1_3v22x")]
-position = Vector2(380, 0)
+position = Vector2(385, 0)
 
 [node name="WallRight" parent="WallContainer" instance=ExtResource("1_3v22x")]
-position = Vector2(1500, 0)
+position = Vector2(1495, 0)
 
 [node name="Floor" parent="WallContainer" instance=ExtResource("1_3v22x")]
-position = Vector2(1500, 1080)
+position = Vector2(1500, 1040)
 rotation = 1.5708
 
 [node name="Timer" type="Timer" parent="."]
