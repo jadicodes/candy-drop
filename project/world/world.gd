@@ -36,7 +36,7 @@ func _make_new_ball() -> void:
 
 
 func _get_spawn_location() -> float:
-	var _ball_location = clamp(get_global_mouse_position().x, 425, 1500)
+	var _ball_location = clamp(get_global_mouse_position().x, 421 + collision.shape.radius, 1499 - collision.shape.radius)
 	return _ball_location
 
 
