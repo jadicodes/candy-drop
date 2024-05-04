@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name World
 
 enum is_dropped {
 	TRUE,
@@ -8,7 +8,6 @@ enum is_dropped {
 
 var collision : CollisionShape2D
 var _ball : Ball
-#var _ball_array = []
 
 var _ball_state: int: 
 	set(state):
@@ -31,7 +30,6 @@ func _process(_delta) -> void:
 func _make_new_ball() -> void:
 	_ball = preload("res://ball/ball.tscn").instantiate()
 	add_child(_ball)
-	
 	_ball_state = is_dropped.FALSE
 	collision = _ball.get_node("Collision")
 	_ball.global_position.x = _get_spawn_location()

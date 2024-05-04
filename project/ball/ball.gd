@@ -1,7 +1,7 @@
 class_name Ball
 extends RigidBody2D
 
-signal color_changed(collision_radius)
+signal combined(color, position)
 
 const PINK = preload("res://ball/pink_ball.png")
 const RED = preload("res://ball/red_ball.png") 
@@ -30,17 +30,17 @@ var _ball_color: int:
 
 
 func _ready() -> void:
-	var number = randi_range(1,2)
+	var number = randi_range(1,3)
 	if number == 1:
 		_ball_color = colors.PINK
 	if number == 2:
 		_ball_color = colors.RED
-	#if number == 3:
-		#_ball_color = colors.ORANGE
+	if number == 3:
+		_ball_color = colors.ORANGE
 
 
-func _set_sprite_texture(path):
-	$Sprite.texture = path
+func _set_sprite_texture(color):
+	$Sprite.texture = color
 
 
 func _set_collision_radius(radius) -> void:
@@ -50,10 +50,6 @@ func _set_collision_radius(radius) -> void:
 
 func return_color() -> int:
 	return _ball_color
-
-
-func set_size(radius) -> void:
-	$Collision.shape.radius = radius
 
 
 func _on_collision_detector_body_entered(body) -> void:
