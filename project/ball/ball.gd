@@ -3,10 +3,14 @@ extends RigidBody2D
 
 signal color_changed(collision_radius)
 
+const PINK = preload("res://ball/pink_ball.png")
+const RED = preload("res://ball/red_ball.png") 
+const ORANGE = preload("res://ball/orange_ball.png") 
 
 enum colors {
 	PINK,
 	RED,
+	ORANGE,
 }
 
 var _ball_array = []
@@ -14,25 +18,35 @@ var _ball_array = []
 var _ball_color: int: 
 	set(state):
 		if state == colors.PINK:
-			$RedBall.hide()
+			_set_sprite_texture(PINK)
 			_set_collision_radius(24)
-		else:
-			$RedBall.show()
+		if state == colors.RED:
+			_set_sprite_texture(RED)
 			_set_collision_radius(48)
+		if state == colors.ORANGE:
+			_set_sprite_texture(ORANGE)
+			_set_collision_radius(96)
 		_ball_color = state
 
 
 func _ready() -> void:
-	var number = randi_range(1,2)
+	var number = randi_range(1,3)
 	if number == 1:
 		_ball_color = colors.PINK
 	if number == 2:
 		_ball_color = colors.RED
+	if number == 3:
+		_ball_color = colors.ORANGE
+
+
+func _set_sprite_texture(path):
+	$Sprite.texture = path
 
 
 func _set_collision_radius(radius) -> void:
 	$Collision.shape.radius = radius
 	$CollisionDetector.set_size(radius + 5)
+
 
 func return_color() -> int:
 	return _ball_color

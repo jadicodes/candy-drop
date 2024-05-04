@@ -18,7 +18,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 420.0
-offset_top = 80.0
+offset_top = 230.0
 offset_right = 1500.0
 offset_bottom = 1080.0
 grow_horizontal = 2
@@ -37,7 +37,7 @@ position = Vector2(1500, 1080)
 rotation = 1.5708
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.5
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
