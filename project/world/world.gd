@@ -6,6 +6,10 @@ enum is_dropped {
 	FALSE,
 }
 
+const PINK = preload("res://ball/pink_ball.png")
+const RED = preload("res://ball/red_ball.png") 
+const ORANGE = preload("res://ball/orange_ball.png") 
+
 var collision : CollisionShape2D
 var _ball : Ball
 
@@ -19,24 +23,27 @@ var _ball_state: int:
 
 
 func _ready() -> void:
-	_make_new_ball()
+	_make_new_ball("random")
 
 
 func _process(_delta) -> void:
 	if _ball_state == is_dropped.FALSE:
-		_ball.global_position.x = _get_spawn_location()
+		_ball.global_position.x = _follow_mouse()
 
 
-func _make_new_ball() -> void:
+func _make_new_ball(color) -> void:
 	_ball = preload("res://ball/ball.tscn").instantiate()
 	add_child(_ball)
 	_ball_state = is_dropped.FALSE
 	collision = _ball.get_node("Collision")
-	_ball.global_position.x = _get_spawn_location()
+	
+	_ball.set_color(color)
+
+	_ball.global_position.x = _follow_mouse()
 	_ball.global_position.y = 100
 
 
-func _get_spawn_location() -> float:
+func _follow_mouse() -> float:
 	var _ball_location = clamp(get_global_mouse_position().x, 426 + collision.shape.radius, 1494 - collision.shape.radius)
 	return _ball_location
 
@@ -52,4 +59,4 @@ func _drop() -> void:
 
 
 func _on_timer_timeout() -> void:
-	_make_new_ball()
+	_make_new_ball("random")

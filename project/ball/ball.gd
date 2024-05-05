@@ -13,7 +13,6 @@ enum colors {
 	ORANGE,
 }
 
-var _ball_array = []
 
 var _ball_color: int: 
 	set(state):
@@ -29,14 +28,21 @@ var _ball_color: int:
 		_ball_color = state
 
 
-func _ready() -> void:
-	var number = randi_range(1,3)
-	if number == 1:
+func set_color(color):
+	if color == "random":
+		_ball_color = colors.values().pick_random()
+	if color == "pink":
 		_ball_color = colors.PINK
-	if number == 2:
+	if color == "red":
 		_ball_color = colors.RED
-	if number == 3:
+	if color == "orange":
 		_ball_color = colors.ORANGE
+
+
+
+
+
+var _ball_array = []
 
 
 func _set_sprite_texture(color):
