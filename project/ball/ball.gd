@@ -1,7 +1,7 @@
 class_name Ball
 extends RigidBody2D
 
-signal combined(color, position)
+#signal matched(color)
 
 const PINK = preload("res://ball/pink_ball.png")
 const RED = preload("res://ball/red_ball.png") 
@@ -12,7 +12,6 @@ enum colors {
 	RED,
 	ORANGE,
 }
-
 
 var _ball_color: int: 
 	set(state):
@@ -26,23 +25,15 @@ var _ball_color: int:
 			_set_sprite_texture(ORANGE)
 			_set_collision_radius(96)
 		_ball_color = state
-
-
+#
+#
 func set_color(color):
-	if color == "random":
-		_ball_color = colors.values().pick_random()
 	if color == "pink":
 		_ball_color = colors.PINK
 	if color == "red":
 		_ball_color = colors.RED
 	if color == "orange":
 		_ball_color = colors.ORANGE
-
-
-
-
-
-var _ball_array = []
 
 
 func _set_sprite_texture(color):
@@ -54,23 +45,33 @@ func _set_collision_radius(radius) -> void:
 	$CollisionDetector.set_size(radius + 5)
 
 
-func return_color() -> int:
-	return _ball_color
+#func return_color() -> int:
+	#return _ball_color
 
 
-func _on_collision_detector_body_entered(body) -> void:
-	if body is Ball:
-		_ball_array.append(body)
-		search()
-
-
-func _on_collision_detector_body_exited(body) -> void:
-	if body is Ball:
-		_ball_array.erase(body)
-
-
-func search() -> void:
-	for i in _ball_array.size():
-			if _ball_array[i] != _ball_array[0] and _ball_array[i].return_color() == _ball_array[0].return_color():
-				_ball_array[i].queue_free()
-				_ball_array[0].queue_free()
+#func _on_collision_detector_body_entered(body) -> void:
+	#if body is Ball:
+		#_ball_array.append(body)
+		#search()
+#
+#
+#func _on_collision_detector_body_exited(body) -> void:
+	#if body is Ball:
+		#_ball_array.erase(body)
+#
+#
+#func search() -> void:
+	#for i in _ball_array.size():
+		#var original_ball = _ball_array[0]
+		#if _ball_array[i] != original_ball and _ball_array[i].return_color() == original_ball.return_color():
+			#var _match_array = []
+			#_match_array.append(original_ball)
+			#_match_array.append(_ball_array[i])
+			#var send = Tagger.assign_tags(_match_array)
+			#if send == true:
+				#var t_color = original_ball.return_color()
+				#matched.emit(t_color)
+				#original_ball.queue_free()
+				#_ball_array[i].queue_free()
+			#else:
+				#pass

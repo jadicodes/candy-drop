@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpexjv1puyyhu"]
+[gd_scene load_steps=5 format=3 uid="uid://dpexjv1puyyhu"]
 
 [ext_resource type="PackedScene" uid="uid://dw4rjw0b2g65g" path="res://world/wall/wall.tscn" id="1_3v22x"]
 [ext_resource type="Script" path="res://world/world.gd" id="1_n5cpv"]
+[ext_resource type="PackedScene" uid="uid://bh7tdnn74p43n" path="res://cat/cat.tscn" id="3_8k7rl"]
+[ext_resource type="PackedScene" uid="uid://p7xfudp5872f" path="res://world/incoming_ball_display.tscn" id="4_rg6vh"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_n5cpv")
@@ -39,5 +41,12 @@ rotation = 1.5708
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="Cat" parent="." instance=ExtResource("3_8k7rl")]
+position = Vector2(605, 64)
+
+[node name="IncomingBallDisplay" parent="." instance=ExtResource("4_rg6vh")]
+offset_left = 1.0
+offset_right = 1.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
