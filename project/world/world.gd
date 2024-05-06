@@ -31,3 +31,5 @@ func _create_combo_ball(color: int, pos: Vector2) -> void:
 	_ball.matched.connect(_create_combo_ball)
 	_ball.set_color(color)
 	_ball.global_position = pos
+	$Particles.global_position = pos
+	$Particles.emitting = true

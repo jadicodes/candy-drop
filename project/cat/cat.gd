@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta) -> void:
-	global_position.x = clamp(get_global_mouse_position().x, 426 + $Collision.shape.radius, 1494 - $Collision.shape.radius)
+	global_position.x = clamp(get_global_mouse_position().x, 426 + $Collision.shape.radius/2, 1494 - $Collision.shape.radius/2)
 
 
 func _process(_delta) -> void:

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddcyx76wfjr33"]
+
+[ext_resource type="Texture2D" uid="uid://3xn37l63bgbg" path="res://world/particle.png" id="1_qpkxo"]
+
+[node name="Particles" type="CPUParticles2D"]
+emitting = false
+amount = 15
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.75
+texture = ExtResource("1_qpkxo")
+particle_flag_align_y = true
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.35
+initial_velocity_max = 2.35
+radial_accel_min = 28.28
+radial_accel_max = 28.28
+color = Color(0.462745, 1, 1, 1)

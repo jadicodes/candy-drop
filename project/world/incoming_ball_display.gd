@@ -4,6 +4,7 @@ const PINK_BALL = preload("res://ball/pink_ball.png")
 const RED_BALL = preload("res://ball/red_ball.png") 
 const ORANGE_BALL = preload("res://ball/orange_ball.png") 
 const YELLOW_BALL = preload("res://ball/yellow_ball.png")
+const GREEN_BALL = preload("res://ball/green_ball.png")
 
 var ball_queue: Array
 
@@ -21,3 +22,5 @@ func _process(_delta) -> void:
 		$Sprite.texture = ORANGE_BALL
 	if ball_queue[1] == 3:
 		$Sprite.texture = YELLOW_BALL
+	if ball_queue[1] == 4:
+		$Sprite.texture = GREEN_BALL

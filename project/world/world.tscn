@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpexjv1puyyhu"]
+[gd_scene load_steps=6 format=3 uid="uid://dpexjv1puyyhu"]
 
 [ext_resource type="PackedScene" uid="uid://dw4rjw0b2g65g" path="res://world/wall/wall.tscn" id="1_3v22x"]
 [ext_resource type="Script" path="res://world/world.gd" id="1_n5cpv"]
 [ext_resource type="PackedScene" uid="uid://bh7tdnn74p43n" path="res://cat/cat.tscn" id="3_8k7rl"]
 [ext_resource type="PackedScene" uid="uid://p7xfudp5872f" path="res://world/incoming_ball_display.tscn" id="4_rg6vh"]
+[ext_resource type="PackedScene" uid="uid://ddcyx76wfjr33" path="res://world/particles.tscn" id="5_d0fa3"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_n5cpv")
@@ -48,5 +49,10 @@ one_shot = true
 [node name="IncomingBallDisplay" parent="." instance=ExtResource("4_rg6vh")]
 offset_left = 1.0
 offset_right = 1.0
+
+[node name="Particles" parent="." instance=ExtResource("5_d0fa3")]
+z_index = 10
+initial_velocity_min = 52.86
+initial_velocity_max = 52.86
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
