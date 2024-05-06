@@ -20,18 +20,20 @@ var _colliding_array := []
 var _ball_color: int: 
 	set(state):
 		if state == colors.PINK:
-			_set_sprite_texture(PINK)
-			_set_collision_radius(24)
+			_set_ball_properties(PINK, 24, 11)
 		if state == colors.RED:
-			_set_sprite_texture(RED)
-			_set_collision_radius(48)
+			_set_ball_properties(RED, 48, 10)
 		if state == colors.ORANGE:
-			_set_sprite_texture(ORANGE)
-			_set_collision_radius(72)
+			_set_ball_properties(ORANGE, 72, 9)
 		if state == colors.YELLOW:
-			_set_sprite_texture(YELLOW)
-			_set_collision_radius(96)
+			_set_ball_properties(YELLOW, 96, 8)
 		_ball_color = state
+
+
+func _set_ball_properties(tex, rad, kg):
+	_set_sprite_texture(tex)
+	_set_collision_radius(rad)
+	_set_mass(kg)
 
 
 func set_color(color: int) -> void:
@@ -52,6 +54,9 @@ func _set_sprite_texture(color: CompressedTexture2D) -> void:
 func _set_collision_radius(radius : int) -> void:
 	$Collision.shape.radius = radius
 	$CollisionDetector.set_size(radius + 5)
+
+func _set_mass(kg):
+	mass = kg
 
 
 func _on_collision_detector_body_entered(body) -> void:
