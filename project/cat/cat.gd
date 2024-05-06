@@ -3,7 +3,6 @@ extends CharacterBody2D
 const PINK = preload("res://ball/pink_ball.png")
 const RED = preload("res://ball/red_ball.png") 
 const ORANGE = preload("res://ball/orange_ball.png")
-const YELLOW = preload("res://ball/yellow_ball.png")
 
 var ball_queue: Array
 

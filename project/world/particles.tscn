@@ -4,18 +4,19 @@
 
 [node name="Particles" type="CPUParticles2D"]
 emitting = false
-amount = 15
+amount = 12
 lifetime = 2.0
 one_shot = true
 speed_scale = 3.0
 explosiveness = 0.75
+lifetime_randomness = 0.75
 texture = ExtResource("1_qpkxo")
 particle_flag_align_y = true
 direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 2.35
-initial_velocity_max = 2.35
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
 radial_accel_min = 28.28
 radial_accel_max = 28.28
-color = Color(0.462745, 1, 1, 1)
+color = Color(0.960784, 0.458824, 0.67451, 1)

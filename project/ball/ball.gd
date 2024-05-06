@@ -8,13 +8,15 @@ const RED = preload("res://ball/red_ball.png")
 const ORANGE = preload("res://ball/orange_ball.png") 
 const YELLOW = preload("res://ball/yellow_ball.png")
 const GREEN = preload("res://ball/green_ball.png")
+const LIGHT_BLUE = preload("res://ball/light_blue_ball.png")
 
 enum colors {
 	PINK,
 	RED,
 	ORANGE,
 	YELLOW,
-	GREEN
+	GREEN,
+	LIGHT_BLUE
 }
 
 var _colliding_array := []
@@ -31,6 +33,8 @@ var _ball_color: int:
 			_set_ball_properties(YELLOW, 96, 8)
 		if state == colors.GREEN:
 			_set_ball_properties(GREEN, 120, 7)
+		if state == colors.LIGHT_BLUE:
+			_set_ball_properties(LIGHT_BLUE, 144, 6)
 		_ball_color = state
 
 
@@ -66,6 +70,7 @@ func _on_collision_detector_body_entered(body) -> void:
 func _on_collision_detector_body_exited(body) -> void:
 	if body is Ball:
 		_colliding_array.erase(body)
+		search()
 
 
 func return_color() -> int:
