@@ -38,12 +38,12 @@ position = Vector2(1495, 0)
 position = Vector2(1500, 1040)
 rotation = 1.5708
 
+[node name="Cat" parent="." instance=ExtResource("3_8k7rl")]
+position = Vector2(594, 108)
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
-
-[node name="Cat" parent="." instance=ExtResource("3_8k7rl")]
-position = Vector2(605, 64)
 
 [node name="IncomingBallDisplay" parent="." instance=ExtResource("4_rg6vh")]
 offset_left = 1.0

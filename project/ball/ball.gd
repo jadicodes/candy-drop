@@ -55,7 +55,8 @@ func _set_collision_radius(radius : int) -> void:
 	$Collision.shape.radius = radius
 	$CollisionDetector.set_size(radius + 5)
 
-func _set_mass(kg):
+
+func _set_mass(kg : int) -> void:
 	mass = kg
 
 
