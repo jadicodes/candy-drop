@@ -5,14 +5,14 @@ const RED_BALL = preload("res://ball/red_ball.png")
 const ORANGE_BALL = preload("res://ball/orange_ball.png") 
 const YELLOW_BALL = preload("res://ball/yellow_ball.png")
 
-var ball_queue
+var ball_queue: Array
 
 
-func _ready():
+func _ready() -> void:
 	ball_queue = BallSelector.get_queue()
 
 
-func _process(_delta):
+func _process(_delta) -> void:
 	if ball_queue[1] == 0:
 		$Sprite.texture = PINK_BALL
 	if ball_queue[1] == 1:

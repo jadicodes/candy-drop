@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbye728peikrm"]
+[gd_scene load_steps=5 format=3 uid="uid://bbye728peikrm"]
 
 [ext_resource type="Script" path="res://ball/ball.gd" id="1_kxcw0"]
 [ext_resource type="Texture2D" uid="uid://h6g8ayjqvp1d" path="res://ball/pink_ball.png" id="1_uvfap"]
-[ext_resource type="Texture2D" uid="uid://6la41o5mxw47" path="res://ball/red_ball.png" id="3_d5gp2"]
 [ext_resource type="PackedScene" uid="uid://y2n7k5kh1lhk" path="res://ball/collision_detector.tscn" id="4_sdbex"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_la6ic"]
@@ -14,10 +13,6 @@ script = ExtResource("1_kxcw0")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_uvfap")
-
-[node name="RedBall" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("3_d5gp2")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_la6ic")

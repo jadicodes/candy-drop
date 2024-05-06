@@ -8,7 +8,6 @@ const RED = preload("res://ball/red_ball.png")
 const ORANGE = preload("res://ball/orange_ball.png") 
 const YELLOW = preload("res://ball/yellow_ball.png")
 
-
 enum colors {
 	PINK,
 	RED,
@@ -16,7 +15,7 @@ enum colors {
 	YELLOW,
 }
 
-var _colliding_array = []
+var _colliding_array := []
 
 var _ball_color: int: 
 	set(state):
@@ -35,7 +34,7 @@ var _ball_color: int:
 		_ball_color = state
 
 
-func set_color(color):
+func set_color(color: int) -> void:
 	if color == 0:
 		_ball_color = colors.PINK
 	if color == 1:
@@ -46,11 +45,11 @@ func set_color(color):
 		_ball_color = colors.YELLOW
 
 
-func _set_sprite_texture(color):
+func _set_sprite_texture(color: CompressedTexture2D) -> void:
 	$Sprite.texture = color
 
 
-func _set_collision_radius(radius) -> void:
+func _set_collision_radius(radius : int) -> void:
 	$Collision.shape.radius = radius
 	$CollisionDetector.set_size(radius + 5)
 
@@ -59,6 +58,7 @@ func _on_collision_detector_body_entered(body) -> void:
 	if body is Ball:
 		_colliding_array.append(body)
 		search()
+
 
 func _on_collision_detector_body_exited(body) -> void:
 	if body is Ball:
@@ -71,20 +71,19 @@ func return_color() -> int:
 
 func search() -> void:
 	for i in _colliding_array.size():
-		var original_ball = _colliding_array[0]
+		var original_ball : Ball = _colliding_array[0]
 		if _colliding_array[i] != original_ball and _colliding_array[i].return_color() == original_ball.return_color():
-			var _match_array = []
+			var _match_array : Array = []
 			_match_array.append(original_ball)
 			_match_array.append(_colliding_array[i])
-			var send = Tagger.assign_tags(_match_array)
-			print(send)
+			var send : bool = Tagger.assign_tags(_match_array)
 			if send == true:
 				if original_ball.return_color() + 1 > BallSelector.get_all_balls().size() - 1:
 					original_ball.queue_free()
 					_colliding_array[i].queue_free()
 				else:
-					var t_color = original_ball.return_color() + 1
-					var t_pos = original_ball.global_position
+					var t_color : int = original_ball.return_color() + 1
+					var t_pos : Vector2 = original_ball.global_position
 					matched.emit(t_color, t_pos)
 					original_ball.queue_free()
 					_colliding_array[i].queue_free()

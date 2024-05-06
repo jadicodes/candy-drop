@@ -5,18 +5,18 @@ const RED = preload("res://ball/red_ball.png")
 const ORANGE = preload("res://ball/orange_ball.png")
 const YELLOW = preload("res://ball/yellow_ball.png")
 
-var ball_queue
+var ball_queue: Array
 
 
-func _ready():
+func _ready() -> void:
 	ball_queue = BallSelector.get_queue()
 
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	global_position.x = clamp(get_global_mouse_position().x, 426 + $Collision.shape.radius, 1494 - $Collision.shape.radius)
 
 
-func _process(_delta):
+func _process(_delta) -> void:
 	if ball_queue[0] == 0:
 		$HoldItem.texture = PINK
 	if ball_queue[0] == 1:
