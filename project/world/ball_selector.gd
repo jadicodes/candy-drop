@@ -12,7 +12,6 @@ func _ready():
 func remove_and_create_ball():
 	remove_first_ball()
 	create_incoming_ball()
-	print(ball_queue)
 
 
 func create_incoming_ball():

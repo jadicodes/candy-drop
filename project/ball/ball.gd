@@ -13,6 +13,8 @@ enum colors {
 	ORANGE,
 }
 
+var _colliding_array = []
+
 var _ball_color: int: 
 	set(state):
 		if state == colors.PINK:
@@ -45,21 +47,21 @@ func _set_collision_radius(radius) -> void:
 	$CollisionDetector.set_size(radius + 5)
 
 
+func _on_collision_detector_body_entered(body) -> void:
+	if body is Ball:
+		_colliding_array.append(body)
+		print(_colliding_array)
+
+
+func _on_collision_detector_body_exited(body) -> void:
+	if body is Ball:
+		_colliding_array.erase(body)
+		print(_colliding_array)
+
+
 #func return_color() -> int:
 	#return _ball_color
 
-
-#func _on_collision_detector_body_entered(body) -> void:
-	#if body is Ball:
-		#_ball_array.append(body)
-		#search()
-#
-#
-#func _on_collision_detector_body_exited(body) -> void:
-	#if body is Ball:
-		#_ball_array.erase(body)
-#
-#
 #func search() -> void:
 	#for i in _ball_array.size():
 		#var original_ball = _ball_array[0]
