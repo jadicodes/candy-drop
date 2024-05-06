@@ -53,7 +53,7 @@ func _set_sprite_texture(color: CompressedTexture2D) -> void:
 
 func _set_collision_radius(radius : int) -> void:
 	$Collision.shape.radius = radius
-	$CollisionDetector.set_size(radius + 5)
+	$CollisionDetector.set_size(radius + 8)
 
 
 func _set_mass(kg : int) -> void:
