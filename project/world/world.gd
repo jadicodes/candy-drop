@@ -20,6 +20,14 @@ func _throw():
 func _create_thrown_ball(color):
 	_ball = preload("res://ball/ball.tscn").instantiate()
 	call_deferred("add_child", _ball)
-	
+	_ball.matched.connect(_create_combo_ball)
 	_ball.global_position = $Cat.global_position
 	_ball.set_color(color)
+
+
+func _create_combo_ball(color, pos):
+	_ball = preload("res://ball/ball.tscn").instantiate()
+	call_deferred("add_child", _ball)
+	_ball.matched.connect(_create_combo_ball)
+	_ball.set_color(color)
+	_ball.global_position = pos

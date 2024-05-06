@@ -1,16 +1,19 @@
 class_name Ball
 extends RigidBody2D
 
-#signal matched(color)
+signal matched(color, pos)
 
 const PINK = preload("res://ball/pink_ball.png")
 const RED = preload("res://ball/red_ball.png") 
 const ORANGE = preload("res://ball/orange_ball.png") 
+const YELLOW = preload("res://ball/yellow_ball.png")
+
 
 enum colors {
 	PINK,
 	RED,
 	ORANGE,
+	YELLOW,
 }
 
 var _colliding_array = []
@@ -25,17 +28,22 @@ var _ball_color: int:
 			_set_collision_radius(48)
 		if state == colors.ORANGE:
 			_set_sprite_texture(ORANGE)
+			_set_collision_radius(72)
+		if state == colors.YELLOW:
+			_set_sprite_texture(YELLOW)
 			_set_collision_radius(96)
 		_ball_color = state
-#
-#
+
+
 func set_color(color):
-	if color == "pink":
+	if color == 0:
 		_ball_color = colors.PINK
-	if color == "red":
+	if color == 1:
 		_ball_color = colors.RED
-	if color == "orange":
+	if color == 2:
 		_ball_color = colors.ORANGE
+	if color == 3:
+		_ball_color = colors.YELLOW
 
 
 func _set_sprite_texture(color):
@@ -50,30 +58,35 @@ func _set_collision_radius(radius) -> void:
 func _on_collision_detector_body_entered(body) -> void:
 	if body is Ball:
 		_colliding_array.append(body)
-		print(_colliding_array)
-
+		search()
 
 func _on_collision_detector_body_exited(body) -> void:
 	if body is Ball:
 		_colliding_array.erase(body)
-		print(_colliding_array)
 
 
-#func return_color() -> int:
-	#return _ball_color
+func return_color() -> int:
+	return _ball_color
 
-#func search() -> void:
-	#for i in _ball_array.size():
-		#var original_ball = _ball_array[0]
-		#if _ball_array[i] != original_ball and _ball_array[i].return_color() == original_ball.return_color():
-			#var _match_array = []
-			#_match_array.append(original_ball)
-			#_match_array.append(_ball_array[i])
-			#var send = Tagger.assign_tags(_match_array)
-			#if send == true:
-				#var t_color = original_ball.return_color()
-				#matched.emit(t_color)
-				#original_ball.queue_free()
-				#_ball_array[i].queue_free()
-			#else:
-				#pass
+
+func search() -> void:
+	for i in _colliding_array.size():
+		var original_ball = _colliding_array[0]
+		if _colliding_array[i] != original_ball and _colliding_array[i].return_color() == original_ball.return_color():
+			var _match_array = []
+			_match_array.append(original_ball)
+			_match_array.append(_colliding_array[i])
+			var send = Tagger.assign_tags(_match_array)
+			print(send)
+			if send == true:
+				if original_ball.return_color() + 1 > BallSelector.get_all_balls().size() - 1:
+					original_ball.queue_free()
+					_colliding_array[i].queue_free()
+				else:
+					var t_color = original_ball.return_color() + 1
+					var t_pos = original_ball.global_position
+					matched.emit(t_color, t_pos)
+					original_ball.queue_free()
+					_colliding_array[i].queue_free()
+			else:
+				pass

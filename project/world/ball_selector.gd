@@ -1,6 +1,7 @@
 extends Node
 
-var throwable_balls = ["pink", "red", "orange"]
+var throwable_balls = [0, 1, 2]
+var all_balls = [0, 1, 2,3]
 var ball_queue = []
 
 
@@ -24,3 +25,7 @@ func remove_first_ball():
 
 func get_queue() -> Array:
 	return ball_queue
+
+
+func get_all_balls() -> Array:
+	return all_balls
