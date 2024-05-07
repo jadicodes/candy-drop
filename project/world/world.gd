@@ -17,6 +17,7 @@ func _throw() -> void:
 	_create_thrown_ball(ball_thrown)
 
 
+<<<<<<< Updated upstream
 func _create_thrown_ball(color: int) -> void:
 	_ball = preload("res://ball/ball.tscn").instantiate()
 	call_deferred("add_child", _ball)
@@ -33,3 +34,37 @@ func _create_combo_ball(color: int, pos: Vector2) -> void:
 	_ball.global_position = pos
 	$Particles.global_position = pos
 	$Particles.emitting = true
+=======
+func _process(_delta) -> void:
+	if _ball_state == is_dropped.FALSE:
+		_ball.global_position.x = _follow_mouse()
+
+
+func _make_new_ball() -> void:
+	_ball = preload("res://ball/ball.tscn").instantiate()
+	add_child(_ball)
+	
+	_ball_state = is_dropped.FALSE
+	collision = _ball.get_node("Collision")
+	_ball.global_position.x = _follow_mouse()
+	_ball.global_position.y = 100
+
+
+func _follow_mouse() -> float:
+	var _ball_location = clamp(get_global_mouse_position().x, 426 + collision.shape.radius, 1494 - collision.shape.radius)
+	return _ball_location
+
+
+func _input(event) -> void:
+	if event.is_action("drop") and _ball_state == is_dropped.FALSE:
+		_drop()
+
+
+func _drop() -> void:
+	_ball_state = is_dropped.TRUE
+	$Timer.start()
+
+
+func _on_timer_timeout() -> void:
+	_make_new_ball()
+>>>>>>> Stashed changes
