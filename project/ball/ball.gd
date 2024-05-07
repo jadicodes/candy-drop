@@ -79,6 +79,7 @@ func return_color() -> int:
 
 func search() -> void:
 	for i in range(_colliding_array.size()):
+		print(_colliding_array.size())
 		var original_ball = _colliding_array[0]
 		var colliding_ball = _colliding_array[i]
 		if colliding_ball != original_ball and colliding_ball.return_color() == original_ball.return_color():
