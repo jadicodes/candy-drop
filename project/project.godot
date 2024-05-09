@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Tagger="*res://ball/tagger.gd"
 BallSelector="*res://world/ball_selector.gd"
+Sfx="*res://sfx/sfx.tscn"
 
 [display]
 

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb7164walmjkn"]
+
+[ext_resource type="Script" path="res://sfx/sfx.gd" id="1_v1s1q"]
+[ext_resource type="AudioStream" uid="uid://bqaopmtpkjjiw" path="res://sfx/candyland.wav" id="2_ellgo"]
+
+[node name="Sfx" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v1s1q")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ellgo")
