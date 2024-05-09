@@ -64,53 +64,50 @@ func _set_mass(kg : int) -> void:
 func _on_collision_detector_body_entered(body) -> void:
 	if body is Ball:
 		collided_balls.append(body)
-		combine()
+		search()
 
 
 func _on_collision_detector_body_exited(body) -> void:
 	if body is Ball:
 		collided_balls.erase(body)
-		combine()
+		search()
 
 
 func return_color() -> int:
 	return _ball_color
 
 
-func check_collisions() -> Array:
-	collided_balls = []
-	for ball in get_parent().get_children():
-		if ball != self and ball is Ball:
-			if ball.return_color() == return_color():
-				collided_balls.append(ball)
-	return collided_balls
-
-
-func combine():
-	var array = check_collisions()
+#func check_collisions() -> Array:
+	#collided_balls = []
+	#for ball in get_parent().get_children():
+		#if ball != self and ball is Ball:
+			#if ball.return_color() == return_color():
+				#collided_balls.append(ball)
+	#return collided_balls
+#
+#
+#func combine():
+	#var array = check_collisions()
 	
 
-#func search() -> Array:
-	#for i in range(_colliding_array.size()):
-		#var original_ball = _colliding_array[0]
-		#var colliding_ball = _colliding_array[i]
-		#if original_ball != colliding_ball and original_ball.return_color() == colliding_ball.return_color():
-			#matching_array.append(colliding_ball)
-	#return matching_array
-
-			#if Tagger.assign_tags([original_ball, colliding_ball]):
-				## next_color is the next color in the sequence, it is what the balls will combine into
-				#var next_color = original_ball.return_color() + 1
-				## if next_color exceeds the array of all colors, delete both balls
-				#if next_color > BallSelector.get_all_balls().size():
-					#original_ball.queue_free()
-					#colliding_ball.queue_free()
-					## TODO play particles when balls cancel each other out
-				## if next_color is within the array of all colors
-				#else:
-					## emit matched, a signal that sends the color and position of the new ball that needs to be created
-					#matched.emit(next_color, original_ball.global_position)
-					#original_ball.queue_free()
-					#colliding_ball.queue_free()
+func search() -> void:
+	for i in range(collided_balls.size()):
+		var original_ball = collided_balls[0]
+		var colliding_ball = collided_balls[i]
+		if original_ball != colliding_ball and original_ball.return_color() == colliding_ball.return_color():
+			if Tagger.assign_tags([original_ball, colliding_ball]):
+				# next_color is the next color in the sequence, it is what the balls will combine into
+				var next_color = original_ball.return_color() + 1
+				# if next_color exceeds the array of all colors, delete both balls
+				if next_color > BallSelector.get_all_balls().size():
+					original_ball.queue_free()
+					colliding_ball.queue_free()
+					# TODO play particles when balls cancel each other out
+				# if next_color is within the array of all colors
+				else:
+					# emit matched, a signal that sends the color and position of the new ball that needs to be created
+					matched.emit(next_color, original_ball.global_position)
+					original_ball.queue_free()
+					colliding_ball.queue_free()
 
 
