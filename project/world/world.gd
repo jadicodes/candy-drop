@@ -7,10 +7,6 @@ var _bodies_in_lose_area := []
 var _entered := false
 
 
-func _ready() -> void:
-	Sfx.play_music()
-
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("throw"):
 		_throw()
@@ -113,3 +109,7 @@ func _on_lose_timer_timeout() -> void:
 func _calculate_score():
 	var mult = _ball._return_multiplier()
 	$ScoreDisplay._add_to_score(10 * mult)
+
+
+func _on_home_button_pressed():
+	get_tree().change_scene_to_file("res://menus/home_menu.tscn")

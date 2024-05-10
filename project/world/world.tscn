@@ -129,7 +129,16 @@ wait_time = 5.0
 
 [node name="ScoreDisplay" parent="." instance=ExtResource("6_y6sg2")]
 
+[node name="HomeButton" type="Button" parent="."]
+offset_left = 15.0
+offset_top = 1011.0
+offset_right = 116.0
+offset_bottom = 1064.0
+theme_override_font_sizes/font_size = 32
+text = "Home"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DangerLine" to="." method="_on_danger_line_body_entered"]
 [connection signal="body_exited" from="DangerLine" to="." method="_on_danger_line_body_exited"]
 [connection signal="timeout" from="LoseTimer" to="." method="_on_lose_timer_timeout"]
+[connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
