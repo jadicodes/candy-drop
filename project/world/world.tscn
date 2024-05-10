@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpexjv1puyyhu"]
+[gd_scene load_steps=11 format=3 uid="uid://dpexjv1puyyhu"]
 
-[ext_resource type="PackedScene" uid="uid://dw4rjw0b2g65g" path="res://world/wall/wall.tscn" id="1_3v22x"]
 [ext_resource type="Script" path="res://world/world.gd" id="1_n5cpv"]
 [ext_resource type="PackedScene" uid="uid://bh7tdnn74p43n" path="res://cat/cat.tscn" id="3_8k7rl"]
 [ext_resource type="PackedScene" uid="uid://p7xfudp5872f" path="res://world/incoming_ball_display.tscn" id="4_rg6vh"]
+[ext_resource type="Texture2D" uid="uid://1ng3jp6oki5y" path="res://world/walls.png" id="5_art37"]
 [ext_resource type="PackedScene" uid="uid://ddcyx76wfjr33" path="res://world/particles.tscn" id="5_d0fa3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ie0kb"]
+size = Vector2(44, 1056.37)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_xtiqc"]
 a = Vector2(1133, -8)
@@ -65,24 +68,9 @@ anchor_bottom = 1.0
 offset_left = 420.0
 offset_top = 230.0
 offset_right = 1500.0
-offset_bottom = 1080.0
+offset_bottom = 1037.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="WallContainer" type="Node" parent="."]
-
-[node name="WallLeft" parent="WallContainer" instance=ExtResource("1_3v22x")]
-position = Vector2(385, 0)
-
-[node name="WallRight" parent="WallContainer" instance=ExtResource("1_3v22x")]
-position = Vector2(1495, 0)
-
-[node name="Floor" parent="WallContainer" instance=ExtResource("1_3v22x")]
-position = Vector2(1500, 1040)
-rotation = 1.5708
-
-[node name="Cat" parent="." instance=ExtResource("3_8k7rl")]
-position = Vector2(594, 108)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -96,22 +84,44 @@ z_index = 10
 initial_velocity_min = 52.86
 initial_velocity_max = 52.86
 
-[node name="DangerLine" type="Area2D" parent="."]
-
-[node name="CollisionShape" type="CollisionShape2D" parent="DangerLine"]
-position = Vector2(377, 210)
-shape = SubResource("SegmentShape2D_xtiqc")
-
 [node name="DoNotCrossLine" type="ColorRect" parent="."]
 offset_left = 415.0
 offset_top = 203.0
 offset_right = 1512.0
 offset_bottom = 243.0
 
+[node name="Walls" type="StaticBody2D" parent="."]
+position = Vector2(958, 631)
+
+[node name="WallSprite" type="Sprite2D" parent="Walls"]
+texture = ExtResource("5_art37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-544, -3.75)
+shape = SubResource("RectangleShape2D_ie0kb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(544, 0)
+shape = SubResource("RectangleShape2D_ie0kb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2.8125, 406)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ie0kb")
+
+[node name="DangerLine" type="Area2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="DangerLine"]
+position = Vector2(377, 210)
+shape = SubResource("SegmentShape2D_xtiqc")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4m6c7")
 }
+
+[node name="Cat" parent="." instance=ExtResource("3_8k7rl")]
+position = Vector2(594, 108)
 
 [node name="LoseTimer" type="Timer" parent="."]
 wait_time = 5.0
