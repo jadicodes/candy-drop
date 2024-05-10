@@ -113,7 +113,7 @@ func _on_lose_timer_timeout() -> void:
 
 func _calculate_score():
 	var mult = _ball._return_multiplier()
-	$ScoreDisplay._add_to_score(10 * mult)
+	$ScoreDisplay._add_to_score(11 * mult)
 
 
 func _on_home_button_pressed():
