@@ -1,5 +1,5 @@
 extends Control
 
 
-func play_music():
+func play_music() -> void:
 	$Music.play()

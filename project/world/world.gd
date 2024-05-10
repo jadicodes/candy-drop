@@ -3,8 +3,11 @@ class_name World
 
 var _ball : Ball
 var _can_throw := true
+var _bodies_in_lose_area := []
+var _entered := false
 
-func _ready():
+
+func _ready() -> void:
 	Sfx.play_music()
 
 
@@ -13,7 +16,7 @@ func _input(event: InputEvent) -> void:
 		_throw()
 
 
-func _check_collision():
+func _check_collision() -> void:
 	var _world_children = _get_ball_children()
 	for ball in _world_children:
 		var ball2 = ball._get_collisions()
@@ -32,7 +35,7 @@ func _check_collision():
 				$Particles.emitting = true
 
 
-func _delete_balls(ball1, ball2):
+func _delete_balls(ball1, ball2) -> void:
 	ball1.removed = true
 	ball2.removed = true
 	remove_child.call_deferred(ball1)
@@ -77,7 +80,29 @@ func _create_combo_ball(color: int, pos: Vector2) -> void:
 	_ball.global_position = pos
 
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	$Cat._next_ball()
 	$IncomingBallDisplay._update_incoming()
 	_can_throw = true
+
+
+func _on_danger_line_body_entered(body) -> void:
+	if body is Ball:
+		_bodies_in_lose_area.append(body)
+		if !_entered:
+			$LoseTimer.start()
+			$AnimationPlayer.play("danger")
+			_entered = true
+
+
+func _on_danger_line_body_exited(body) -> void:
+	if body is Ball:
+		_bodies_in_lose_area.erase(body)
+		if _bodies_in_lose_area == []:
+			_entered = false
+			$LoseTimer.stop()
+			$AnimationPlayer.stop()
+
+
+func _on_lose_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://menus/lose_menu.tscn")

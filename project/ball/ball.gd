@@ -48,7 +48,7 @@ var _ball_color: int:
 		_ball_color = state
 
 
-func _set_ball_properties(tex, rad, kg):
+func _set_ball_properties(tex, rad, kg) -> void:
 	_set_sprite_texture(tex)
 	_set_collision_radius(rad)
 	_set_mass(kg)
