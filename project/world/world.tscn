@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dpexjv1puyyhu"]
+[gd_scene load_steps=15 format=3 uid="uid://dpexjv1puyyhu"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_n5cpv"]
 [ext_resource type="Shader" path="res://world/gradient.gdshader" id="2_s222o"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1ng3jp6oki5y" path="res://world/walls.png" id="5_art37"]
 [ext_resource type="PackedScene" uid="uid://ddcyx76wfjr33" path="res://world/particles/particles.tscn" id="5_d0fa3"]
 [ext_resource type="PackedScene" uid="uid://bepi6tiubt537" path="res://world/score/score_display.tscn" id="6_y6sg2"]
+[ext_resource type="FontFile" uid="uid://djg4b707305yo" path="res://common/MadimiOne-Regular.ttf" id="8_ptbnw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_82q4f"]
 shader = ExtResource("2_s222o")
@@ -139,11 +140,12 @@ wait_time = 5.0
 [node name="ScoreDisplay" parent="." instance=ExtResource("6_y6sg2")]
 
 [node name="HomeButton" type="Button" parent="."]
-offset_left = 15.0
-offset_top = 1011.0
-offset_right = 116.0
-offset_bottom = 1064.0
-theme_override_font_sizes/font_size = 32
+offset_left = 111.0
+offset_top = 961.0
+offset_right = 280.0
+offset_bottom = 1054.0
+theme_override_fonts/font = ExtResource("8_ptbnw")
+theme_override_font_sizes/font_size = 64
 text = "Home"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

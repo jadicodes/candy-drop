@@ -1,6 +1,5 @@
 extends Control
 
-var _ball: Ball
 
 func _ready() -> void:
 	if !Sfx._return_playing():
