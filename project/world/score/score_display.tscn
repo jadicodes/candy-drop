@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bepi6tiubt537"]
 
-[ext_resource type="Texture2D" uid="uid://n48mts1afqog" path="res://world/cloud.png" id="1_0wd3v"]
+[ext_resource type="Texture2D" uid="uid://n48mts1afqog" path="res://common/cloud.png" id="1_0wd3v"]
 [ext_resource type="Script" path="res://world/score/score_display.gd" id="1_jy011"]
 
 [node name="ScoreDisplay" type="Control"]

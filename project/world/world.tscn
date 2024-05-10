@@ -1,11 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpexjv1puyyhu"]
+[gd_scene load_steps=14 format=3 uid="uid://dpexjv1puyyhu"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_n5cpv"]
+[ext_resource type="Shader" path="res://world/gradient.gdshader" id="2_s222o"]
 [ext_resource type="PackedScene" uid="uid://bh7tdnn74p43n" path="res://cat/cat.tscn" id="3_8k7rl"]
 [ext_resource type="PackedScene" uid="uid://p7xfudp5872f" path="res://world/incoming_ball_display/incoming_ball_display.tscn" id="4_rg6vh"]
 [ext_resource type="Texture2D" uid="uid://1ng3jp6oki5y" path="res://world/walls.png" id="5_art37"]
 [ext_resource type="PackedScene" uid="uid://ddcyx76wfjr33" path="res://world/particles/particles.tscn" id="5_d0fa3"]
 [ext_resource type="PackedScene" uid="uid://bepi6tiubt537" path="res://world/score/score_display.tscn" id="6_y6sg2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_82q4f"]
+shader = ExtResource("2_s222o")
+shader_parameter/topleft = Color(0.8, 0.5, 0.6, 1)
+shader_parameter/topright = Color(0.8, 0.5, 0.6, 1)
+shader_parameter/bottomleft = Color(1, 0.5, 1, 1)
+shader_parameter/bottomright = Color(1, 0.7, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie0kb"]
 size = Vector2(44, 1056.37)
@@ -56,9 +64,10 @@ _data = {
 script = ExtResource("1_n5cpv")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_82q4f")
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(1, 0.835294, 0.909804, 1)
+color = Color(1, 0.827451, 0.768627, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 anchors_preset = 7

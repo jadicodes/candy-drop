@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmurum0dh8twv"]
+[gd_scene load_steps=9 format=3 uid="uid://cmurum0dh8twv"]
 
 [ext_resource type="Script" path="res://menus/home_menu.gd" id="1_fq1ym"]
+[ext_resource type="FontFile" uid="uid://djg4b707305yo" path="res://common/MadimiOne-Regular.ttf" id="2_e880r"]
+[ext_resource type="Shader" path="res://world/gradient.gdshader" id="2_h2ivv"]
+[ext_resource type="Texture2D" uid="uid://n48mts1afqog" path="res://common/cloud.png" id="3_2rgmi"]
+[ext_resource type="PackedScene" uid="uid://bbye728peikrm" path="res://ball/ball.tscn" id="4_t1ru4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5lru"]
+shader = ExtResource("2_h2ivv")
+shader_parameter/topleft = Color(0.8, 0.5, 0.6, 1)
+shader_parameter/topright = Color(0.8, 0.5, 0.6, 1)
+shader_parameter/bottomleft = Color(1, 0.5, 1, 1)
+shader_parameter/bottomright = Color(1, 0.7, 1, 1)
+
+[sub_resource type="Theme" id="Theme_6vk5e"]
+default_font = ExtResource("2_e880r")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjhx5"]
+size = Vector2(64, 2096)
 
 [node name="HomeMenu" type="Control"]
 layout_mode = 3
@@ -12,34 +29,134 @@ grow_vertical = 2
 script = ExtResource("1_fq1ym")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_w5lru")
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(1, 0.835294, 0.909804, 1)
 
 [node name="Label" type="Label" parent="."]
+z_index = 10
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -362.5
-offset_top = -240.5
-offset_right = 362.5
-offset_bottom = -65.5
+offset_left = -443.5
+offset_top = -199.0
+offset_right = 443.5
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 128
+theme = SubResource("Theme_6vk5e")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 0.223529, 0.513726, 1)
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/font_size = 220
 text = "Candy Drop"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 775.0
-offset_top = 562.0
-offset_right = 1109.0
-offset_bottom = 658.0
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = 98.0
+offset_right = 167.0
+offset_bottom = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_e880r")
 theme_override_font_sizes/font_size = 64
 text = "Play Game"
 
+[node name="CreditsButton" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1509.0
+offset_top = 781.0
+offset_right = 1909.0
+offset_bottom = 1061.0
+texture_normal = ExtResource("3_2rgmi")
+
+[node name="Label" type="Label" parent="CreditsButton"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 94.0
+offset_right = 293.0
+offset_bottom = 179.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.223529, 0.513726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_e880r")
+theme_override_font_sizes/font_size = 64
+text = "Credits"
+
+[node name="Ball" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(103, -96)
+
+[node name="Ball2" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(440, -404)
+
+[node name="Ball3" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(795, -181)
+
+[node name="Ball4" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(1062, -896)
+
+[node name="Ball5" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(1460, -27)
+
+[node name="Ball6" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(1848, -363)
+
+[node name="Ball7" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(324, -495)
+
+[node name="Ball8" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(654, -777)
+
+[node name="Ball9" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(897, -627)
+
+[node name="Ball10" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(1446, -726)
+
+[node name="Ball11" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(1636, -614)
+
+[node name="Container" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container"]
+position = Vector2(-26, 571)
+shape = SubResource("RectangleShape2D_vjhx5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Container"]
+position = Vector2(1949, 553)
+shape = SubResource("RectangleShape2D_vjhx5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Container"]
+position = Vector2(915, 1111)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_vjhx5")
+
+[node name="Ball12" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(300, -1197)
+
+[node name="Ball13" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(1284, -1019)
+
+[node name="Ball14" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(1640, -1442)
+
+[node name="Ball15" parent="." instance=ExtResource("4_t1ru4")]
+position = Vector2(891, -1654)
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
