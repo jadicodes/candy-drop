@@ -11,6 +11,7 @@ const GREEN = preload("res://ball/green_ball.png")
 const LIGHT_BLUE = preload("res://ball/light_blue_ball.png")
 const DARK_BLUE = preload("res://ball/dark_blue_ball.png")
 const PURPLE = preload("res://ball/purple_ball.png")
+const WHITE = preload("res://ball/white_ball.png")
 
 var removed = false
 
@@ -23,6 +24,7 @@ enum colors {
 	LIGHT_BLUE,
 	DARK_BLUE,
 	PURPLE,
+	WHITE,
 }
 
 var _collided_balls := []
@@ -46,6 +48,8 @@ var _ball_color: int:
 			_set_ball_properties(DARK_BLUE, 168, 5, 7)
 		if state == colors.PURPLE:
 			_set_ball_properties(PURPLE, 192, 4, 8)
+		if state == colors.WHITE:
+			_set_ball_properties(WHITE, 216, 3, 9)
 		_ball_color = state
 
 
