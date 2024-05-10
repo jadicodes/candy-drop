@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ddcyx76wfjr33"]
 
-[ext_resource type="Texture2D" uid="uid://3xn37l63bgbg" path="res://world/particle.png" id="1_qpkxo"]
+[ext_resource type="Texture2D" uid="uid://3xn37l63bgbg" path="res://world/particles/particle.png" id="1_qpkxo"]
 
 [node name="Particles" type="CPUParticles2D"]
 emitting = false

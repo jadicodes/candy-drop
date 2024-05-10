@@ -78,6 +78,8 @@ func _create_combo_ball(color: int, pos: Vector2) -> void:
 	_ball.collision_detected.connect(_check_collision)
 	_ball.set_color(color)
 	_ball.global_position = pos
+	
+	_calculate_score()
 
 
 func _on_timer_timeout() -> void:
@@ -106,3 +108,8 @@ func _on_danger_line_body_exited(body) -> void:
 
 func _on_lose_timer_timeout() -> void:
 	get_tree().change_scene_to_file("res://menus/lose_menu.tscn")
+
+
+func _calculate_score():
+	var mult = _ball._return_multiplier()
+	$ScoreDisplay._add_to_score(10 * mult)

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://4lycomu64ncs" path="res://cat/cat.png" id="2_0ebrv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_57v4l"]
-radius = 70.0
+radius = 73.0
 height = 174.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_m41xa"]

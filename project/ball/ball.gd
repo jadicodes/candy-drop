@@ -26,32 +26,34 @@ enum colors {
 }
 
 var _collided_balls := []
+var _multiplier := 1
 
 var _ball_color: int: 
 	set(state):
 		if state == colors.PINK:
-			_set_ball_properties(PINK, 24, 11)
+			_set_ball_properties(PINK, 24, 11, 1)
 		if state == colors.RED:
-			_set_ball_properties(RED, 48, 10)
+			_set_ball_properties(RED, 48, 10, 2)
 		if state == colors.ORANGE:
-			_set_ball_properties(ORANGE, 72, 9)
+			_set_ball_properties(ORANGE, 72, 9, 3)
 		if state == colors.YELLOW:
-			_set_ball_properties(YELLOW, 96, 8)
+			_set_ball_properties(YELLOW, 96, 8, 4)
 		if state == colors.GREEN:
-			_set_ball_properties(GREEN, 120, 7)
+			_set_ball_properties(GREEN, 120, 7, 5)
 		if state == colors.LIGHT_BLUE:
-			_set_ball_properties(LIGHT_BLUE, 144, 6)
+			_set_ball_properties(LIGHT_BLUE, 144, 6, 6)
 		if state == colors.DARK_BLUE:
-			_set_ball_properties(DARK_BLUE, 168, 5)
+			_set_ball_properties(DARK_BLUE, 168, 5, 7)
 		if state == colors.PURPLE:
-			_set_ball_properties(PURPLE, 192, 4)
+			_set_ball_properties(PURPLE, 192, 4, 8)
 		_ball_color = state
 
 
-func _set_ball_properties(tex, rad, kg) -> void:
+func _set_ball_properties(tex, rad, kg, mult) -> void:
 	_set_sprite_texture(tex)
 	_set_collision_radius(rad)
 	_set_mass(kg)
+	_set_multiplier(mult)
 
 
 func set_color(color: int) -> void:
@@ -71,6 +73,10 @@ func _set_mass(kg : int) -> void:
 	mass = kg
 
 
+func _set_multiplier(mult: int) -> void:
+	_multiplier = mult
+
+
 func _on_collision_detector_body_entered(body) -> void:
 	if body is Ball:
 		_collided_balls.append(body)
@@ -85,6 +91,10 @@ func _on_collision_detector_body_exited(body) -> void:
 
 func _return_color() -> int:
 	return _ball_color
+
+
+func _return_multiplier() -> int:
+	return _multiplier
 
 
 func _get_collisions():

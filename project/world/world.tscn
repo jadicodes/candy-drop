@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpexjv1puyyhu"]
+[gd_scene load_steps=12 format=3 uid="uid://dpexjv1puyyhu"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_n5cpv"]
 [ext_resource type="PackedScene" uid="uid://bh7tdnn74p43n" path="res://cat/cat.tscn" id="3_8k7rl"]
-[ext_resource type="PackedScene" uid="uid://p7xfudp5872f" path="res://world/incoming_ball_display.tscn" id="4_rg6vh"]
+[ext_resource type="PackedScene" uid="uid://p7xfudp5872f" path="res://world/incoming_ball_display/incoming_ball_display.tscn" id="4_rg6vh"]
 [ext_resource type="Texture2D" uid="uid://1ng3jp6oki5y" path="res://world/walls.png" id="5_art37"]
-[ext_resource type="PackedScene" uid="uid://ddcyx76wfjr33" path="res://world/particles.tscn" id="5_d0fa3"]
+[ext_resource type="PackedScene" uid="uid://ddcyx76wfjr33" path="res://world/particles/particles.tscn" id="5_d0fa3"]
+[ext_resource type="PackedScene" uid="uid://bepi6tiubt537" path="res://world/score/score_display.tscn" id="6_y6sg2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie0kb"]
 size = Vector2(44, 1056.37)
@@ -12,6 +13,21 @@ size = Vector2(44, 1056.37)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_xtiqc"]
 a = Vector2(1133, -8)
 b = Vector2(10, -8)
+
+[sub_resource type="Animation" id="Animation_ox32g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoNotCrossLine:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_8uttg"]
 resource_name = "danger"
@@ -28,21 +44,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0.521569, 0.458824, 1), Color(1, 1, 1, 1), Color(1, 0.407843, 0.341176, 1), Color(1, 1, 1, 1), Color(1, 0.192157, 0.152941, 1), Color(0.639216, 0, 0.0117647, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_ox32g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DoNotCrossLine:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4m6c7"]
@@ -125,6 +126,8 @@ position = Vector2(594, 108)
 
 [node name="LoseTimer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="ScoreDisplay" parent="." instance=ExtResource("6_y6sg2")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DangerLine" to="." method="_on_danger_line_body_entered"]
