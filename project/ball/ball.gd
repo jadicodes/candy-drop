@@ -82,7 +82,5 @@ func _return_color() -> int:
 func _get_collisions():
 	for i in range(_collided_balls.size()):
 		if _collided_balls[i] != self and _collided_balls[i]._return_color() == _return_color():
-			print("Collided ball:" + str(_collided_balls[i]))
 			return _collided_balls[i]
-	print("null")
 	return null

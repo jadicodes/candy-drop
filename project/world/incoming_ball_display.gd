@@ -12,9 +12,10 @@ var ball_queue: Array
 
 func _ready() -> void:
 	ball_queue = BallSelector.get_queue()
+	_update_incoming()
 
 
-func _process(_delta) -> void:
+func _update_incoming() -> void:
 	if ball_queue[1] == 0:
 		$Sprite.texture = PINK_BALL
 	if ball_queue[1] == 1:

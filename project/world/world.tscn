@@ -43,7 +43,6 @@ rotation = 1.5708
 position = Vector2(594, 108)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
 one_shot = true
 
 [node name="IncomingBallDisplay" parent="." instance=ExtResource("4_rg6vh")]

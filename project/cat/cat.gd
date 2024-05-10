@@ -9,16 +9,21 @@ var ball_queue: Array
 
 func _ready() -> void:
 	ball_queue = BallSelector.get_queue()
+	_next_ball()
 
 
 func _physics_process(_delta) -> void:
 	global_position.x = clamp(get_global_mouse_position().x, 426 + $Collision.shape.radius/2, 1494 - $Collision.shape.radius/2)
 
 
-func _process(_delta) -> void:
+func _next_ball() -> void:
 	if ball_queue[0] == 0:
 		$HoldItem.texture = PINK
 	if ball_queue[0] == 1:
 		$HoldItem.texture = RED
 	if ball_queue[0] == 2:
 		$HoldItem.texture = ORANGE
+
+
+func _empty_hand():
+	$HoldItem.texture = null
