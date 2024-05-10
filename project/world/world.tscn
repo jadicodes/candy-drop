@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpexjv1puyyhu"]
+[gd_scene load_steps=16 format=3 uid="uid://dpexjv1puyyhu"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_n5cpv"]
-[ext_resource type="Shader" path="res://world/gradient.gdshader" id="2_s222o"]
+[ext_resource type="Shader" path="res://common/gradient.gdshader" id="2_s222o"]
 [ext_resource type="PackedScene" uid="uid://bh7tdnn74p43n" path="res://cat/cat.tscn" id="3_8k7rl"]
 [ext_resource type="PackedScene" uid="uid://p7xfudp5872f" path="res://world/incoming_ball_display/incoming_ball_display.tscn" id="4_rg6vh"]
 [ext_resource type="Texture2D" uid="uid://1ng3jp6oki5y" path="res://world/walls.png" id="5_art37"]
@@ -60,6 +60,13 @@ _data = {
 "RESET": SubResource("Animation_ox32g"),
 "danger": SubResource("Animation_8uttg")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_axddh"]
+shader = ExtResource("2_s222o")
+shader_parameter/topleft = Color(0.8, 0.6, 0.6, 1)
+shader_parameter/topright = Color(0.8, 0.6, 0.6, 1)
+shader_parameter/bottomleft = Color(1, 0.7, 1, 1)
+shader_parameter/bottomright = Color(1, 0.7, 1, 1)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_n5cpv")
@@ -148,8 +155,56 @@ theme_override_fonts/font = ExtResource("8_ptbnw")
 theme_override_font_sizes/font_size = 64
 text = "Home"
 
+[node name="LoseScreen" type="ColorRect" parent="."]
+visible = false
+z_index = 10
+material = SubResource("ShaderMaterial_axddh")
+offset_right = 1932.0
+offset_bottom = 1081.0
+
+[node name="Label" type="Label" parent="LoseScreen"]
+layout_mode = 0
+offset_left = 635.0
+offset_top = 114.0
+offset_right = 1303.0
+offset_bottom = 289.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 0.223529, 0.513726, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("8_ptbnw")
+theme_override_font_sizes/font_size = 128
+text = "Final Score:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="LoseScreen"]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 358.0
+offset_right = 1243.0
+offset_bottom = 622.0
+theme_override_colors/font_color = Color(1, 0.223529, 0.513726, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("8_ptbnw")
+theme_override_font_sizes/font_size = 200
+text = "SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="LoseScreen"]
+layout_mode = 0
+offset_left = 682.0
+offset_top = 735.0
+offset_right = 1270.0
+offset_bottom = 913.0
+theme_override_fonts/font = ExtResource("8_ptbnw")
+theme_override_font_sizes/font_size = 128
+text = "Play Again"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DangerLine" to="." method="_on_danger_line_body_entered"]
 [connection signal="body_exited" from="DangerLine" to="." method="_on_danger_line_body_exited"]
 [connection signal="timeout" from="LoseTimer" to="." method="_on_lose_timer_timeout"]
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="LoseScreen/PlayAgainButton" to="." method="_on_play_again_button_pressed"]

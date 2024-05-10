@@ -7,6 +7,10 @@ var _bodies_in_lose_area := []
 var _entered := false
 
 
+func _ready():
+	$LoseScreen.hide()
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("throw"):
 		_throw()
@@ -103,7 +107,8 @@ func _on_danger_line_body_exited(body) -> void:
 
 
 func _on_lose_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://menus/lose_menu.tscn")
+	$LoseScreen.show()
+	$LoseScreen/ScoreLabel.text = str($ScoreDisplay._return_score())
 
 
 func _calculate_score():
@@ -113,3 +118,7 @@ func _calculate_score():
 
 func _on_home_button_pressed():
 	get_tree().change_scene_to_file("res://menus/home_menu.tscn")
+
+
+func _on_play_again_button_pressed():
+	get_tree().reload_current_scene()

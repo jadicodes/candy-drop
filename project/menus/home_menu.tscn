@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menus/home_menu.gd" id="1_fq1ym"]
 [ext_resource type="FontFile" uid="uid://djg4b707305yo" path="res://common/MadimiOne-Regular.ttf" id="2_e880r"]
-[ext_resource type="Shader" path="res://world/gradient.gdshader" id="2_h2ivv"]
+[ext_resource type="Shader" path="res://common/gradient.gdshader" id="2_h2ivv"]
 [ext_resource type="Texture2D" uid="uid://n48mts1afqog" path="res://common/cloud.png" id="3_2rgmi"]
 [ext_resource type="PackedScene" uid="uid://bbye728peikrm" path="res://ball/ball.tscn" id="4_t1ru4"]
 
