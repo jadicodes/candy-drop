@@ -1,7 +1,7 @@
 extends Node
 
 var throwable_balls = [0, 1, 2]
-var all_balls = [0, 1, 2, 3, 4, 5]
+var all_balls = [0, 1, 2, 3, 4, 5, 6, 7]
 var ball_queue = []
 
 
