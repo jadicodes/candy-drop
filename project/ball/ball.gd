@@ -1,7 +1,7 @@
 class_name Ball
 extends RigidBody2D
 
-signal matched(color, pos)
+signal collision_detected(body)
 
 const PINK = preload("res://ball/pink_ball.png")
 const RED = preload("res://ball/red_ball.png") 
@@ -9,6 +9,8 @@ const ORANGE = preload("res://ball/orange_ball.png")
 const YELLOW = preload("res://ball/yellow_ball.png")
 const GREEN = preload("res://ball/green_ball.png")
 const LIGHT_BLUE = preload("res://ball/light_blue_ball.png")
+
+var removed = false
 
 enum colors {
 	PINK,
@@ -19,7 +21,7 @@ enum colors {
 	LIGHT_BLUE
 }
 
-var collided_balls := []
+var _collided_balls := []
 
 var _ball_color: int: 
 	set(state):
@@ -63,51 +65,24 @@ func _set_mass(kg : int) -> void:
 
 func _on_collision_detector_body_entered(body) -> void:
 	if body is Ball:
-		collided_balls.append(body)
-		search()
+		_collided_balls.append(body)
+		emit_signal("collision_detected")
 
 
 func _on_collision_detector_body_exited(body) -> void:
 	if body is Ball:
-		collided_balls.erase(body)
-		search()
+		_collided_balls.erase(body)
+		emit_signal("collision_detected")
 
 
-func return_color() -> int:
+func _return_color() -> int:
 	return _ball_color
 
 
-#func check_collisions() -> Array:
-	#collided_balls = []
-	#for ball in get_parent().get_children():
-		#if ball != self and ball is Ball:
-			#if ball.return_color() == return_color():
-				#collided_balls.append(ball)
-	#return collided_balls
-#
-#
-#func combine():
-	#var array = check_collisions()
-	
-
-func search() -> void:
-	for i in range(collided_balls.size()):
-		var original_ball = collided_balls[0]
-		var colliding_ball = collided_balls[i]
-		if original_ball != colliding_ball and original_ball.return_color() == colliding_ball.return_color():
-			if Tagger.assign_tags([original_ball, colliding_ball]):
-				# next_color is the next color in the sequence, it is what the balls will combine into
-				var next_color = original_ball.return_color() + 1
-				# if next_color exceeds the array of all colors, delete both balls
-				if next_color > BallSelector.get_all_balls().size():
-					original_ball.queue_free()
-					colliding_ball.queue_free()
-					# TODO play particles when balls cancel each other out
-				# if next_color is within the array of all colors
-				else:
-					# emit matched, a signal that sends the color and position of the new ball that needs to be created
-					matched.emit(next_color, original_ball.global_position)
-					original_ball.queue_free()
-					colliding_ball.queue_free()
-
-
+func _get_collisions():
+	for i in range(_collided_balls.size()):
+		if _collided_balls[i] != self and _collided_balls[i]._return_color() == _return_color():
+			print("Collided ball:" + str(_collided_balls[i]))
+			return _collided_balls[i]
+	print("null")
+	return null
