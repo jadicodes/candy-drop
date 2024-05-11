@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dpexjv1puyyhu"]
+[gd_scene load_steps=27 format=3 uid="uid://dpexjv1puyyhu"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_n5cpv"]
 [ext_resource type="Shader" path="res://common/gradient.gdshader" id="2_s222o"]
@@ -8,6 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://ddcyx76wfjr33" path="res://world/particles/particles.tscn" id="5_d0fa3"]
 [ext_resource type="PackedScene" uid="uid://bepi6tiubt537" path="res://world/score/score_display.tscn" id="6_y6sg2"]
 [ext_resource type="FontFile" uid="uid://djg4b707305yo" path="res://common/MadimiOne-Regular.ttf" id="8_ptbnw"]
+[ext_resource type="Texture2D" uid="uid://h6g8ayjqvp1d" path="res://ball/pink_ball.png" id="9_tdcn5"]
+[ext_resource type="Texture2D" uid="uid://6la41o5mxw47" path="res://ball/red_ball.png" id="10_y2wdu"]
+[ext_resource type="Texture2D" uid="uid://81j2pg0gpfpm" path="res://ball/orange_ball.png" id="11_tua32"]
+[ext_resource type="Texture2D" uid="uid://j4iic6gwsfek" path="res://ball/yellow_ball.png" id="12_wglg2"]
+[ext_resource type="Texture2D" uid="uid://27t5wve7b2r6" path="res://ball/green_ball.png" id="13_8hyls"]
+[ext_resource type="Texture2D" uid="uid://bfacxxcg3u7od" path="res://ball/light_blue_ball.png" id="14_lbw2u"]
+[ext_resource type="Texture2D" uid="uid://wgp4le1slx45" path="res://ball/dark_blue_ball.png" id="15_3dicl"]
+[ext_resource type="Texture2D" uid="uid://beaheflwnfylw" path="res://ball/purple_ball.png" id="16_6034f"]
+[ext_resource type="Texture2D" uid="uid://bi40gm1mvgum3" path="res://ball/white_ball.png" id="17_qvfqk"]
+[ext_resource type="Texture2D" uid="uid://cj023tlwy5xdn" path="res://world/arrow.png" id="18_yne6g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_82q4f"]
 shader = ExtResource("2_s222o")
@@ -67,6 +77,15 @@ shader_parameter/topleft = Color(0.8, 0.6, 0.6, 1)
 shader_parameter/topright = Color(0.8, 0.6, 0.6, 1)
 shader_parameter/bottomleft = Color(1, 0.7, 1, 1)
 shader_parameter/bottomright = Color(1, 0.7, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7medu"]
+bg_color = Color(0.996078, 0.501961, 0.988235, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 5
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_n5cpv")
@@ -148,9 +167,11 @@ wait_time = 5.0
 
 [node name="HomeButton" type="Button" parent="."]
 offset_left = 111.0
-offset_top = 961.0
+offset_top = 918.0
 offset_right = 280.0
-offset_bottom = 1054.0
+offset_bottom = 1011.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("8_ptbnw")
 theme_override_font_sizes/font_size = 64
 text = "Home"
@@ -201,6 +222,63 @@ offset_bottom = 913.0
 theme_override_fonts/font = ExtResource("8_ptbnw")
 theme_override_font_sizes/font_size = 128
 text = "Play Again"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 1541.0
+offset_top = 634.0
+offset_right = 1903.0
+offset_bottom = 1030.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7medu")
+
+[node name="PinkBall" type="Sprite2D" parent="Panel"]
+position = Vector2(189, 66)
+texture = ExtResource("9_tdcn5")
+
+[node name="RedBall" type="Sprite2D" parent="Panel"]
+position = Vector2(263, 86)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("10_y2wdu")
+
+[node name="OrangeBall" type="Sprite2D" parent="Panel"]
+position = Vector2(314, 148)
+scale = Vector2(0.43, 0.43)
+texture = ExtResource("11_tua32")
+
+[node name="YellowBall" type="Sprite2D" parent="Panel"]
+position = Vector2(321, 229)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("12_wglg2")
+
+[node name="GreenBall" type="Sprite2D" parent="Panel"]
+position = Vector2(274, 306)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("13_8hyls")
+
+[node name="LightBlueBall" type="Sprite2D" parent="Panel"]
+position = Vector2(181, 332)
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("14_lbw2u")
+
+[node name="DarkBlueBall" type="Sprite2D" parent="Panel"]
+position = Vector2(84.9999, 289)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("15_3dicl")
+
+[node name="PurpleBall" type="Sprite2D" parent="Panel"]
+position = Vector2(51.9999, 188)
+scale = Vector2(0.23, 0.23)
+texture = ExtResource("16_6034f")
+
+[node name="WhiteBall" type="Sprite2D" parent="Panel"]
+position = Vector2(103, 95.0001)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("17_qvfqk")
+
+[node name="Arrow" type="Sprite2D" parent="Panel"]
+texture_filter = 1
+position = Vector2(192, 198)
+scale = Vector2(2, 2)
+texture = ExtResource("18_yne6g")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DangerLine" to="." method="_on_danger_line_body_entered"]
