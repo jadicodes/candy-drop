@@ -12,5 +12,6 @@ func stop_music() -> void:
 	if !playing:
 		$Music.stop()
 
-func _return_playing():
-	return $Music.playing
+
+func _toggle_sound():
+	$Music.stream_paused = !$Music.stream_paused

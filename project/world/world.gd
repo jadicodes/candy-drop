@@ -122,3 +122,11 @@ func _on_home_button_pressed():
 
 func _on_play_again_button_pressed():
 	get_tree().reload_current_scene()
+
+
+func _on_mute_button_mouse_entered():
+	_can_throw = false
+
+
+func _on_mute_button_mouse_exited():
+	_can_throw = true

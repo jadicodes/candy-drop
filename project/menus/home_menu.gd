@@ -2,8 +2,7 @@ extends Control
 
 
 func _ready() -> void:
-	if !Sfx._return_playing():
-		Sfx.play_music()
+	Sfx.play_music()
 	var _world_children = _get_ball_children()
 	for ball in _world_children:
 		var color = BallSelector.get_all_balls().pick_random()

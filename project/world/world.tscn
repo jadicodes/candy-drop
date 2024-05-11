@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dpexjv1puyyhu"]
+[gd_scene load_steps=28 format=3 uid="uid://dpexjv1puyyhu"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_n5cpv"]
 [ext_resource type="Shader" path="res://common/gradient.gdshader" id="2_s222o"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://beaheflwnfylw" path="res://ball/purple_ball.png" id="16_6034f"]
 [ext_resource type="Texture2D" uid="uid://bi40gm1mvgum3" path="res://ball/white_ball.png" id="17_qvfqk"]
 [ext_resource type="Texture2D" uid="uid://cj023tlwy5xdn" path="res://world/arrow.png" id="18_yne6g"]
+[ext_resource type="PackedScene" uid="uid://dbhqt8ehpqijm" path="res://common/mute_button.tscn" id="19_0ki67"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_82q4f"]
 shader = ExtResource("2_s222o")
@@ -280,9 +281,22 @@ position = Vector2(192, 198)
 scale = Vector2(2, 2)
 texture = ExtResource("18_yne6g")
 
+[node name="MuteButton" parent="." instance=ExtResource("19_0ki67")]
+offset_left = 111.0
+offset_top = 738.0
+offset_right = 279.0
+offset_bottom = 896.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 56
+text = "Toggle
+Sound"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DangerLine" to="." method="_on_danger_line_body_entered"]
 [connection signal="body_exited" from="DangerLine" to="." method="_on_danger_line_body_exited"]
 [connection signal="timeout" from="LoseTimer" to="." method="_on_lose_timer_timeout"]
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="LoseScreen/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="mouse_entered" from="MuteButton" to="." method="_on_mute_button_mouse_entered"]
+[connection signal="mouse_exited" from="MuteButton" to="." method="_on_mute_button_mouse_exited"]
