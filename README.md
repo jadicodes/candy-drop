@@ -1,4 +1,4 @@
-### Candy Drop
+# Candy Drop
 [Play here!](https://prismatoad.itch.io/candy-drop)
 
 In Candy Drop, drop different colors of candies on top of each other to create bigger candies! Try to reach the near-impossible double jawbreaker!
